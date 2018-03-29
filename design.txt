@@ -1,0 +1,15 @@
+The general design plan will be recoreded here. 
+
+Each of the 15 forumlas will be an extension of the Forumla base class. This class will have all the 
+staistical analyisis functions predefined. It will also contain the pure virtual function caclulate.
+This will be implemented by each of the equations and will contain the hardcoded logic for each equation.
+At program start all 15 of the equations will be instantiated into an thread pool of these forumlas. Then, as 
+random populations are generated threads will be passed an index of this array. Each object
+will then hold its records in an array of vectors untill the calculations are complete. Statistical anaylisis
+will then be preformed on the resulting data. 
+
+Threads will each be repsonsible for on index in array of populations. When they are ready they will set there respective index 
+null signaling to the master thread that it is time to pass a new population into the index. This is shared memory paralleaztion 
+
+Once each thread has finshed its analytics it will put a vector in the sharred array at its spot and terminate. The main thread will then run 
+through and report the data 
